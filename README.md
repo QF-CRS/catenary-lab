@@ -2,6 +2,10 @@
 
 **A small, dependency-free catenary and sag-tension toolkit for overhead lines.**
 
+[![CI](https://github.com/QF-CRS/catenary-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/QF-CRS/catenary-lab/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/QF-CRS/catenary-lab)](https://github.com/QF-CRS/catenary-lab/releases)
+[![License](https://img.shields.io/github/license/QF-CRS/catenary-lab)](LICENSE)
+
 Catenary Lab computes the classical flexible-cable solution for a single span
 with a uniform load per horizontal metre and a prescribed horizontal component
 of tension. It exposes a Python API and a command-line interface, so the same
