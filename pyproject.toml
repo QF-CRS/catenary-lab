@@ -28,9 +28,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-user/catenary-lab"
-Repository = "https://github.com/your-user/catenary-lab"
-Issues = "https://github.com/your-user/catenary-lab/issues"
+Homepage = "https://github.com/QF-CRS/catenary-lab"
+Repository = "https://github.com/QF-CRS/catenary-lab"
+Issues = "https://github.com/QF-CRS/catenary-lab/issues"
 
 [project.scripts]
 catenary-lab = "catenarylab.cli:main"
