@@ -45,6 +45,14 @@ class CatenarySolutionTests(unittest.TestCase):
         self.assertAlmostEqual(solution.sag_below_chord(0.0), 0.0, places=11)
         self.assertAlmostEqual(solution.sag_below_chord(120.0), 0.0, places=11)
 
+    def test_steep_nearly_straight_span_preserves_endpoint(self) -> None:
+        solution = solve_catenary(
+            Span(1e-6, right_elevation_m=1e6),
+            Cable(weight_n_per_m=1e6, horizontal_tension_n=1e6),
+        )
+        self.assertAlmostEqual(solution.elevation(0.0), 0.0, places=12)
+        self.assertAlmostEqual(solution.elevation(1e-6), 1e6, places=6)
+
 
 class ValidationTests(unittest.TestCase):
     def test_span_rejects_non_positive_length(self) -> None:

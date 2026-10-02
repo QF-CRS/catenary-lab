@@ -120,9 +120,11 @@ class CatenarySolution:
         """Return cable elevation at horizontal position ``x_m``."""
 
         x = self._check_x(x_m)
-        return self._constant_m + self.a_m * math.cosh(
-            (x - self.vertex_x_m) / self.a_m
-        )
+        # Evaluate relative to the left attachment. The direct c + a*cosh
+        # form loses significant digits when c and the cosh term nearly cancel.
+        return self.span.left_elevation_m + 2.0 * self.a_m * math.sinh(
+            x / (2.0 * self.a_m)
+        ) * math.sinh((x - 2.0 * self.vertex_x_m) / (2.0 * self.a_m))
 
     def slope(self, x_m: float) -> float:
         """Return ``dz/dx`` at ``x_m``."""
@@ -264,7 +266,10 @@ def solve_catenary(span: Span, cable: Cable) -> CatenarySolution:
     vertex_x = span.length_m / 2.0 - a * vertex_offset_u
     try:
         constant = span.left_elevation_m - a * math.cosh(vertex_x / a)
-        vertex_elevation = constant + a
+        # Use the same cancellation-resistant form as ``elevation``.
+        vertex_elevation = span.left_elevation_m + 2.0 * a * math.sinh(
+            vertex_x / (2.0 * a)
+        ) * math.sinh(-vertex_x / (2.0 * a))
     except OverflowError as exc:
         raise ValueError(
             "the catenary parameters are outside the stable numeric range"
