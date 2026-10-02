@@ -8,4 +8,4 @@ from .model import Cable, CatenarySolution, Span, solve_catenary
 
 __all__ = ["Cable", "CatenarySolution", "Span", "solve_catenary"]
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
